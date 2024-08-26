@@ -1,14 +1,16 @@
-function Prodacts({prodacts,onAdd, onUpdate, onRemove}){
+import ProdactItem from "./ProdactItem"
+
+function Prodacts({prodacts, onUpdate ,OnAdd}){
     console.log("Prodacts")
     return (<div>
         <ul>
-        {
-            categoies.map((item,index) =>
-                {
-                    return <li key={index}> <h1> {item.name} </h1> <button>Update</button><button>Remove</button></li>
+            {
+                prodacts.map((prod,index) =>{
+                    return <li key={index}><ProdactItem prodact={prod} onUpdate={onUpdate} /> </li>
                 })
-        }</ul>
-        <button>Add</button>
+            }
+            </ul>
+    <button>Add Prodact </button>
     </div>)
 }
 
