@@ -1,9 +1,11 @@
+import ApexChartBar from "./BarChart"
 import PieChart from "./PieChart"
 
-function Statistics({data,onAdd, onUpdate, onRemove}){
+function Statistics({statistics}){
     console.log("Statistics")
     return (<div>
-            <PieChart/>
+            <PieChart data={statistics}/> <br />
+            <ApexChartBar data={statistics}/>
     </div>)
 }
 

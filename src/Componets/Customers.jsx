@@ -29,11 +29,11 @@ function Customers({customers}){
                   title: 'prodact',
                 },
                 {
-                    key: 'qty',
+                    key: 'date',
                     title: 'Join at',
                 },
                 {
-                    key: 'date',
+                    key: 'quntety',
                     title: 'Prodacts Bought',
                 }
             ]

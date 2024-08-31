@@ -20,10 +20,10 @@ class Client{
     }
 
     async getStatistics(){
-        return [{id:1,quntety:5,prodactId:2,date:"01/01/2020"},
-            {id:2,quntety:5,prodactId:1,date:"02/01/2020"},
-            {id:3,quntety:20,prodactId:2,date:"03/01/2020"},
-            {id:4,quntety:8,prodactId:1,date:"02/01/2020"}]
+        return [{id:1,quntety:5,prodactId:2,name:"RPG" ,date:"01/01/2020"},
+            {id:2,quntety:5,prodactId:1,name: "train",date:"02/01/2020"},
+            {id:3,quntety:20,prodactId:2,name:"RPG",date:"03/01/2020"},
+            {id:4,quntety:8,prodactId:1,name: "train",date:"02/01/2020"}]
     }    
 }
 

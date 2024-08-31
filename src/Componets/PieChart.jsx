@@ -9,32 +9,72 @@ import {
   // If you're using Next.js please use the dynamic import for react-apexcharts and remove the import from the top for the react-apexcharts
   // import dynamic from "next/dynamic";
   // const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
+    
+  const hexCharacters = [0,1,2,3,4,5,6,7,8,9,"A","B","C","D","E","F"]
+
+
+  function getCharacter(index) {
+      return hexCharacters[index]
+  }
+  
+  function generateJustOneColor(num){
+  
+      let hexColorRep = "#"
+  
+      for (let position = 0; position < 6; position++){
+          hexColorRep += getCharacter( (position + num * 7) % hexCharacters.length)
+      }
+  
+      return hexColorRep
+  
+  }
+
    
+  export default function PieChart({data}) {
+  const dataMap ={}
+
+  for(let datum of data ){
+      if( !(datum.name in dataMap)){
+        dataMap[datum.name] = {qty:0 ,color : generateJustOneColor(datum.prodactId) }
+      }
+
+      dataMap[datum.name]["qty"] += datum.quntety 
+  }
+
+  const series = Object.keys(dataMap).map(key =>{
+    return dataMap[key]["qty"]
+  })
+  const labels=Object.keys(dataMap)
+  const colors = Object.keys(dataMap).map(key =>{
+    return dataMap[key]["color"]
+  })
+
   const chartConfig = {
     type: "pie",
     width: 280,
-    height: 280,
-    series: [44, 55, 13, 43, 22],
+    height: 280,  
+    series:series,
     options: {
       chart: {
         toolbar: {
           show: false,
         },
       },
+      labels: labels,
       title: {
         show: "",
       },
       dataLabels: {
         enabled: false,
       },
-      colors: ["#020617", "#ff8f00", "#00897b", "#1e88e5", "#d81b60"],
+      colors: colors,
       legend: {
         show: false,
       },
     },
   };
-   
-  export default function PieChart() {
+
+
     return (
       <Card>
         <CardHeader

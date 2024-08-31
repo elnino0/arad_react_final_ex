@@ -49,7 +49,7 @@ const Login = ({setLoggedIn}) => {
 }
 
   return (
-    <div className={'mainContainer'}>
+    <div class="grid gap-6 mb-6 md:grid-cols-2">
       <div className={'titleContainer'}>
         <div>Login</div>
       </div>
@@ -59,7 +59,7 @@ const Login = ({setLoggedIn}) => {
           value={email}
           placeholder="Enter your email here"
           onChange={(ev) => setEmail(ev.target.value)}
-          className={'inputBox'}
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         />
         <label className="errorLabel">{emailError}</label>
       </div>
@@ -69,13 +69,13 @@ const Login = ({setLoggedIn}) => {
           value={password}
           placeholder="Enter your password here"
           onChange={(ev) => setPassword(ev.target.value)}
-          className={'inputBox'}
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         />
         <label className="errorLabel">{passwordError}</label>
       </div>
       <br />
       <div className={'inputContainer'}>
-        <input className={'inputButton'} type="button" onClick={onButtonClick} value={'Log in'} />
+        <input class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" type="button" onClick={onButtonClick} value={'Log in'} />
       </div>
     </div>
   )
