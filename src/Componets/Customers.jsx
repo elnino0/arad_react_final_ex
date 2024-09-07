@@ -1,7 +1,12 @@
+import { useSelector } from "react-redux"
 import TableComp from "./TableComp"
 
 function Customers({customers}){
-    console.log("Customers" , customers)
+    console.log("Customers")
+    const data = useSelector(state=>{
+        return state.customers
+    })
+
     const columes =
         [
             {
@@ -51,7 +56,7 @@ function Customers({customers}){
     }
 
  return (<div>
-            <TableComp data={customers} columns={columes} render={render}/>
+            <TableComp data={data} columns={columes} render={render}/>
     </div>)
 }
 

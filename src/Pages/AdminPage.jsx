@@ -1,11 +1,16 @@
 import { useEffect, useState } from "react"
+import { useDispatch } from "react-redux"
 import AdminView from "../Componets/AdminView"
 import Client from '../scripts/ApiClient'
+import { v4 as uuidv4 } from 'uuid';
+
+
 function AdminPage({loggedIn}){
 const clinet = new Client()
-const [categories,setCategories] = useState([])
-const [customers,setCustomers] = useState([])
-const [prodacts,SetProdacts] = useState([])
+const dispatch = useDispatch()
+const [categories, setCategories] = useState([])
+const [customers, setCustomers] = useState([])
+const [prodacts, SetProdacts] = useState([])
 const [statistics, SetStatistics] = useState([])
 
 
@@ -14,7 +19,6 @@ useEffect(()=>{
         setCategories(res)
     }).then(() =>{
         clinet.getCustomers().then(res =>{
-            console.log("customers - " , res)
             setCustomers(res)
             return res
         }).then(customers => { 
@@ -33,10 +37,8 @@ useEffect(()=>{
                         if( item.id in buys){
                             return {...item, bought:buys[item.id]}
                         }
-    
                         return item
                     })
-                console.log("enrichedProdacts", enrichedProdacts)
                 SetProdacts(enrichedProdacts)
             })
          })
@@ -50,34 +52,56 @@ useEffect(()=>{
 
 },[])
 
-const onUpdateProdact = (data) => {
+useEffect(()=>{
 
+    dispatch({ type: "LOADSTATISTICS", payload: statistics })
+    dispatch({ type: "LOADCUSTOMERS", payload: customers })
+    dispatch({ type: "LOADPROD", payload: prodacts })
+    dispatch({ type: "LOADCAT", payload: categories })
+
+},[categories,customers,prodacts,statistics])
+
+
+const onUpdateProdact = (e,data) => {
+    dispatch({ type: "UPDATEPROD", payload: data })
 }
 
-const onAddNewProdact = (data) => {
-
+const onAddNewProdact = () => {
+    dispatch({ type: "ADDPROD", payload: {name: "",cat:"",id:uuidv4(),"": 0,"link":"","des":""} })
 }
 
 const onAddCategory = (data) =>{
-
+    dispatch({ type: "ADDCAT", payload: data })
 }
 
 const onRemoveCategory = (id) =>{
-    
+    dispatch({ type: "DELETECAT", payload: id })
 }
 
 const onUpdateCategory = (data) =>{
     
+    if(!data.name){
+        return
+    }
+
+    dispatch({ type: "UPDATECAT", payload: data })
+}
+
+const onlogin = ()=> {
+    console.log("onlogin")
+    return getAdminView()
+}
+
+const getAdminView = () =>{
+    return  <AdminView categoies={{onAdd:onAddCategory ,onUpdate:onUpdateCategory, onRemove:onRemoveCategory}}
+    prodacts={ {onUpdate: onUpdateProdact, onAdd:onAddNewProdact}} />
 }
 
 return (<>
         <div>
             {
-                loggedIn == true ? <div><h1> Logged in </h1>   </div> : <h1> Not logged in</h1>
+                loggedIn == true ? <div><h1> Logged in </h1> {onlogin()}  </div> : <div><h1> Not logged in</h1> {onlogin()}</div> 
             }
-
-            <AdminView categoies={{data:categories , onAdd:onAddCategory ,onUpdate:onUpdateCategory, onRemove:onRemoveCategory}}
-            customers={{data:customers}}  prodacts={ {data: prodacts, onUpdate: onUpdateProdact, onAdd:onAddNewProdact}} statistics={{data:statistics}}/>
         </div>
 </>)
 }

@@ -7,7 +7,7 @@ import Customers from "./Customers";
 import Prodacts from "./Prodacts";
 import Statistics from "./Statistics";
 
-function AdminView({categoies, customers, prodacts, statistics}){
+function AdminView({categoies, prodacts}){
     
     const [value, setValue] = useState("1");
     
@@ -24,10 +24,10 @@ function AdminView({categoies, customers, prodacts, statistics}){
             <Tab label="Customers" value="3"/>
             <Tab label="Statistics" value="4"/>
         </TabList >
-            <TabPanel value="1"><Categoies categoies={categoies.data} onAdd={categoies.onAdd} onRemove={categoies.onRemove} onUpdate={categoies.onUpdate}/></TabPanel> 
-            <TabPanel value="2"><Prodacts prodacts={prodacts.data} onUpdate={prodacts.onRemove} onAdd={prodacts.onAdd}/></TabPanel> 
-            <TabPanel value="3"> <Customers customers={customers.data} /> </TabPanel>
-            <TabPanel value="4"><Statistics statistics={statistics.data}/></TabPanel> 
+            <TabPanel value="1"><Categoies onAdd={categoies.onAdd} onRemove={categoies.onRemove} onUpdate={categoies.onUpdate}/></TabPanel> 
+            <TabPanel value="2"><Prodacts  onUpdate={prodacts.onRemove} onAdd={prodacts.onAdd}/></TabPanel> 
+            <TabPanel value="3"> <Customers /> </TabPanel>
+            <TabPanel value="4"><Statistics /></TabPanel> 
             </TabContext> 
             </>
         )

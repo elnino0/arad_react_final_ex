@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Home from './Pages/HomePage'
 import Login from './Pages/LoginPage'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import AdminPage from './Pages/AdminPage'
 
 function App() {
