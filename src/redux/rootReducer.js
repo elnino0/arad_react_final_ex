@@ -1,4 +1,4 @@
-import Client from "../scripts/ApiClient";
+import Client from "../apiClient/ApiClient";
 
 const initialState = {
   categoies: [],
@@ -8,7 +8,7 @@ const initialState = {
   statistics:[]
 };
 
-const client = new Client()
+const client = Client.getInstance()
 const reducer = (state = initialState, action) => {
   console.log("reducer")
   switch (action.type) {
@@ -31,6 +31,7 @@ const reducer = (state = initialState, action) => {
     }
 
     case 'ADDPROD': {
+      console.log("ADDPROD --- ",  action.payload)
       return { ...state, prodacts: [...state.prodacts, action.payload] };
     }
 

@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import AdminView from "../Componets/AdminView"
-import Client from '../scripts/ApiClient'
+import Client from '../apiClient/ApiClient'
 import { v4 as uuidv4 } from 'uuid';
 
 
 function AdminPage({loggedIn}){
-const clinet = new Client()
+const clinet = Client.getInstance()
 const dispatch = useDispatch()
 const [categories, setCategories] = useState([])
 const [customers, setCustomers] = useState([])
@@ -24,8 +24,9 @@ useEffect(()=>{
         }).then(customers => { 
             clinet.getProdacts().then(prodacts =>{
                 const buys = {}
+                console.log("customers",customers)
                 for (let item of customers){
-                    for(let prod of item.prodacts){
+                    for(let prod of item.purchases){
                         if(!(prod.prodactId in buys) ){
                             buys[prod.prodactId] = []
                         }
@@ -63,18 +64,32 @@ useEffect(()=>{
 
 
 const onUpdateProdact = (e,data) => {
+    
+    console.log("onUpdateProdact data", data)
+    if(data.id){
+        clinet.updateProdacts(data)
+    }else{
+        clinet.saveProdacts(data)
+    }
+
     dispatch({ type: "UPDATEPROD", payload: data })
 }
 
-const onAddNewProdact = () => {
-    dispatch({ type: "ADDPROD", payload: {name: "",cat:"",id:uuidv4(),"": 0,"link":"","des":""} })
+const onAddNewProdact = () => 
+{
+    dispatch({ type: "ADDPROD", payload: {id:undefined,name: "",cat:"","": 0,"link":"","des":""} })
 }
 
 const onAddCategory = (data) =>{
+    if(!data.name){
+        return
+    }
+    clinet.saveCategoreis(data)
     dispatch({ type: "ADDCAT", payload: data })
 }
 
 const onRemoveCategory = (id) =>{
+    clinet.deletecategory(id)
     dispatch({ type: "DELETECAT", payload: id })
 }
 
@@ -84,11 +99,16 @@ const onUpdateCategory = (data) =>{
         return
     }
 
+    if(data.id){
+        clinet.updateCategoreis(data)
+    }else{
+        clinet.saveCategoreis(data)
+    }
+
     dispatch({ type: "UPDATECAT", payload: data })
 }
 
 const onlogin = ()=> {
-    console.log("onlogin")
     return getAdminView()
 }
 

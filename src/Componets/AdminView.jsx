@@ -12,7 +12,6 @@ function AdminView({categoies, prodacts}){
     const [value, setValue] = useState("1");
     
     const handleChange = (event, newValue) => { 
-        console.log("newValue", newValue)
         setValue(newValue); 
       }; 
 
@@ -25,7 +24,7 @@ function AdminView({categoies, prodacts}){
             <Tab label="Statistics" value="4"/>
         </TabList >
             <TabPanel value="1"><Categoies onAdd={categoies.onAdd} onRemove={categoies.onRemove} onUpdate={categoies.onUpdate}/></TabPanel> 
-            <TabPanel value="2"><Prodacts  onUpdate={prodacts.onRemove} onAdd={prodacts.onAdd}/></TabPanel> 
+            <TabPanel value="2"><Prodacts  onUpdate={prodacts.onUpdate} onAdd={prodacts.onAdd}/></TabPanel> 
             <TabPanel value="3"> <Customers /> </TabPanel>
             <TabPanel value="4"><Statistics /></TabPanel> 
             </TabContext> 

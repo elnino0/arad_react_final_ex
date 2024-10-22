@@ -26,7 +26,7 @@ function ProdactItem({prodact, onUpdate }){
     }
 
     return (<div className="text-black-400 font-bold border-double border-4 border-indigo-600">
-        Tilte : <input onChange={e =>{setDetails({...details,tilte:e.target.value}) }} type="text"  defaultValue={prodact.name}/> <br />  
+        Tilte : <input onChange={e =>{setDetails({...details,name:e.target.value}) }} type="text"  defaultValue={prodact.name}/> <br />  
         Price : <input onChange={e =>{setDetails({...details,price:e.target.value}) }} type="text" defaultValue={prodact.price}/> <br />
         Category : <input onChange={e =>{setDetails({...details,cat:e.target.value}) }} type="text" defaultValue={prodact.cat}/> <br />
         Link to Pic : <input onChange={e =>{setDetails({...details,link:e.target.value}) }}type="text" defaultValue={prodact.link}/> <br />

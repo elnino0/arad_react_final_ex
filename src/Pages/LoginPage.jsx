@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import Client from '../scripts/ApiClient'
-
+import Client from '../apiClient/ApiClient'
 const Login = ({setLoggedIn}) => {
     
-  const [email, setEmail] = useState('e@g.com')
-  const [password, setPassword] = useState('asdsadsadadfdf')
+  const [email, setEmail] = useState('admin@gmail.com')
+  const [password, setPassword] = useState('superadmin')
   const [emailError, setEmailError] = useState('')
   const [passwordError, setPasswordError] = useState('')
 
@@ -36,8 +35,8 @@ const Login = ({setLoggedIn}) => {
       setPasswordError('The password must be 8 characters or longer')
       return
     }
-    const clinet = new Client()
-    const userDetails = await clinet.login({name:email, password:password})
+    const clinet = Client.getInstance()
+    const userDetails = await clinet.login(email, password)
     sessionStorage.setItem("jwt", userDetails)
 
     if(userDetails.admin == true){

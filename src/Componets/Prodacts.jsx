@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux"
 import ProdactItem from "./ProdactItem"
 
-function Prodacts({onUpdate ,OnAdd}){
+function Prodacts({onUpdate ,onAdd}){
     console.log("Prodacts")
     const data = useSelector(state =>{
         return state.prodacts
@@ -16,7 +16,7 @@ function Prodacts({onUpdate ,OnAdd}){
             }
             </ul>
     <br />
-    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" onClick={OnAdd}>Add Prodact </button>
+    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" onClick={e =>{onAdd(e)}} >Add Prodact </button>
     </div>)
 }
 
