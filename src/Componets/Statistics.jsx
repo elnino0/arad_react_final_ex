@@ -3,7 +3,6 @@ import ApexChartBar from "./BarChart"
 import PieChart from "./PieChart"
 
 function Statistics({}){
-    console.log("Statistics")
     const data = useSelector(state =>{
          return state.statistics
     })

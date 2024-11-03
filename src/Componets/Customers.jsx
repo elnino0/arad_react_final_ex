@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux"
 import TableComp from "./TableComp"
 
-function Customers({customers}){
-    console.log("Customers")
+function Customers(){
+   
     const data = useSelector(state=>{
         return state.customers
     })
@@ -18,15 +18,15 @@ function Customers({customers}){
                 title: 'Join at',
             },
             {
-                key: 'prodacts',
+                key: 'purchases',
                 title: 'Prodacts Bought',
             }
         ]
 
     const render = (col,raw) => {
 
-        if (col.key === 'prodacts'){
-            const prodacts = raw.prodacts
+        if (col.key === 'purchases'){
+            const prodacts = raw.purchases
             const columesProdacts =
             [
                 {

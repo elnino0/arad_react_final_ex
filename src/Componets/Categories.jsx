@@ -2,7 +2,6 @@ import { useState } from "react"
 import { useSelector } from "react-redux"
 
 function Categoies({onAdd, onUpdate, onRemove}){
-    console.log("categoreirs")
     const [name, setName] = useState("")
 
     const data = useSelector(state =>{

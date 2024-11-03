@@ -2,7 +2,6 @@ import { useSelector } from "react-redux"
 import ProdactItem from "./ProdactItem"
 
 function Prodacts({onUpdate ,onAdd}){
-    console.log("Prodacts")
     const data = useSelector(state =>{
         return state.prodacts
     })    

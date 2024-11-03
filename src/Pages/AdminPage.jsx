@@ -2,7 +2,6 @@ import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import AdminView from "../Componets/AdminView"
 import Client from '../apiClient/ApiClient'
-import { v4 as uuidv4 } from 'uuid';
 
 
 function AdminPage({loggedIn}){
@@ -24,7 +23,6 @@ useEffect(()=>{
         }).then(customers => { 
             clinet.getProdacts().then(prodacts =>{
                 const buys = {}
-                console.log("customers",customers)
                 for (let item of customers){
                     for(let prod of item.purchases){
                         if(!(prod.prodactId in buys) ){
@@ -48,9 +46,6 @@ useEffect(()=>{
          })
 
     } )
-
-
-
 },[])
 
 useEffect(()=>{

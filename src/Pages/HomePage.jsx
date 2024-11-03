@@ -1,5 +1,5 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Home = (props) => {
   const { loggedIn, email } = props
@@ -23,6 +23,9 @@ const Home = (props) => {
         />
         {loggedIn ? <div>Your email address is {email}</div> : <div />}
       </div>
+      <p>
+        Dont have an account ? <Link to="/signin"> Login </Link>
+      </p>
     </div>
   )
 }
