@@ -2,61 +2,6 @@
 import axios from 'axios';
 const URL = "http://localhost:3000"
 
-// class Client{
-
-//     constructor(){
-//         this.client = axios.create({
-//             baseURL: URL,
-//           });
-//     }
-
-//     async login(userName,password) {
-//         const loginRes =  await this.client.post("/auth/login", {email:userName,password:password})
-//         console.log("token",  loginRes.data.access_token)
-//         this.client.defaults.headers["authorization"] = "Bearer " + loginRes.data.access_token;
-//         this.client.defaults.headers["Access-Control-Allow-Origin"] = "*"
-//         return {admin:loginRes.data.admin}
-//     }
-
-//     async getCategoreis(){
-//         return (await this.client.get("/categoires")).data
-//     }
-//     async getProdacts(){
-//         return (await this.client.get("/prodacts")).data
-//     }
-
-//     async getCustomers(){
-//         return (await this.client.get("/customer")).data
-
-//     }
-
-//     async getStatistics(){
-//         return (await this.client.get("/purchases")).data
-//     }
-
-//     // async getCategoreis(){
-//     //     return [{name: "toys"},{name:"guns"}]
-//     // }
-
-//     // async getProdacts(){
-//     //     return [{name: "train",cat:"toys",id:1,"price": 1,"link":"www.link.com/pic","des":"train"},{name:"RPG",cat:"guns",id:2,"price": 1,"link":"www.link.com/pic","des":"train"}]
-//     // }
-
-//     // async getCustomers(){
-//     //     return [
-//     //         {name: "Avi ron",join:"01/01/2020",prodacts:[{quntety:5,name:"RPG", prodactId:2,date:"01/01/2020"},{quntety:5,name:"Train",prodactId:1,date:"02/01/2020"}]},
-//     //         {name: "Dana ron",join:"01/01/2020",prodacts:[{quntety:20,name:"RPG",prodactId:2,date:"03/01/2020"},{quntety:8,name:"Train",prodactId:1,date:"02/01/2020"}]}]
-//     // }
-
-//     // async getStatistics(){
-//     //     return [{id:1,quntety:5,prodactId:2,name:"RPG" ,date:"01/01/2020"},
-//     //         {id:2,quntety:5,prodactId:1,name: "train",date:"02/01/2020"},
-//     //         {id:3,quntety:20,prodactId:2,name:"RPG",date:"03/01/2020"},
-//     //         {id:4,quntety:8,prodactId:1,name: "train",date:"02/01/2020"}]
-//     // }    
-// }
-
-
 class Client {
     constructor() {
         this.client = axios.create({
@@ -125,8 +70,6 @@ class Client {
         return (await this.client.get(`/prodacts/user`)).data
     }
     
-    
-    
     async hideUserPhurches(ishide){
         return (await this.client.patch(`/customer/hideOrders`), data={ishide}).data 
     }
@@ -134,6 +77,14 @@ class Client {
     async signUpUser(user){
         user["role"] = "customer"
         return (await this.client.post(`/user`,user)).data
+    }
+
+    logout(){
+        localStorage.setItem("accessToken", undefined);
+    }
+
+    isLogin(){
+        return localStorage.getItem("accessToken") != undefined
     }
 
     static getInstance() {

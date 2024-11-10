@@ -5,7 +5,6 @@ function Cart({OnPurshes}){
     const items = useSelector(state =>{
       return state.cart
  })
- console.log("cart    " , items)
     const generateItems = () =>{
           if(items.length == 0){
             return <div> No item in Cart </div>

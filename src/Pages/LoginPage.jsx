@@ -50,38 +50,38 @@ const Login = ({setLoggedIn}) => {
 }
 
   return (
-    <div className="">
+    <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
       <div className={'titleContainer'}>
         <div>Login</div>
       </div>
-      <div className={'inputContainer'}>
+      <div className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
         <label htmlFor="email"> email </label>
         <input
           value={email}
           placeholder="Enter your email here"
           onChange={(ev) => setEmail(ev.target.value)}
-          className=""
+          className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         />
         <br />
         <label className="errorLabel">{emailError}</label>
       </div>
-      <div className={'inputContainer'}>
+      <div className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
       <label htmlFor="password"> password </label>
         <input
           type="password"
           value={password}
           placeholder="Enter your password here"
           onChange={(ev) => setPassword(ev.target.value)}
-          className=""
+          className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         />
         <br />
         <label className="errorLabel">{passwordError}</label>
       </div>
       <div className={'inputContainer'}>
-        <input className="bg-blue-500 hover:bg-blue-700 text-white font-bold rounded-full" type="button" onClick={onButtonClick} value={'Log in'} />
+        <input className="bg-blue-500 hover:bg-blue-700 text-white font-bold px-6 py-8 mx-auto  rounded-full" type="button" onClick={onButtonClick} value={'Log in'} />
       </div>
       <br />
-      <p>
+      <p className="text-blue-500 md:text-lg dark:text-gray-400 font-bold">
        Dont have an account ? <Link to="/signin"> Signup </Link>
       </p>
     </div>

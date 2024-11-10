@@ -12,16 +12,17 @@ class ApexChartBar extends React.Component {
         
         this.data.sort((a, b) =>   { return  Date.parse(a.date) -  Date.parse(b.date)})
     }
-
+     
     configState(){
 
-        
-        let categories = this.data.map(item =>{ return item.date})
+      let categories = this.data.map(item =>{ return item.date})
+
         categories = categories.filter((item,index) =>{
             return categories.indexOf(item) === index;
         } )        
 
         let prtodacts = this.data.map(item =>{ return item.name})
+
         prtodacts = prtodacts.filter((item,index) =>{
             return prtodacts.indexOf(item) === index;
         } )        
@@ -38,91 +39,57 @@ class ApexChartBar extends React.Component {
                 }
             }
         }
-
-        console.log("categories ---- ",categories)
-        console.log("series ---- ",series)
-
+        
         this.state = {
-
-            series: series,
-            options: {
-              chart:{
-                type: 'bar',
-                height: 350,
-                stacked: true,
-                toolbar: {
-                  show: true
-                },
-                zoom: {
-                  enabled: true
-                }
-              },
-              plotOptions: {
-                bar: {
-                  horizontal: false,
-                  borderRadius: 10,
-                  borderRadiusApplication: 'end', // 'around', 'end'
-                  borderRadiusWhenStacked: 'last', // 'all', 'last'
-                  dataLabels: {
-                    total: {
-                      enabled: true,
-                      style: {
-                        fontSize: '13px',
-                        fontWeight: 900
-                      }
-                    }
-                  }
-                },
+          
+          series: series,
+          options: {
+            chart: {
+              type: 'bar',
+              height: 350
             },
-              dataLabels: {
-                enabled: true,
-                offsetY: -20,
-                style: {
-                  fontSize: '12px',
-                  colors: ["#304758"]
-                }
+            plotOptions: {
+              bar: {
+                horizontal: false,
+                columnWidth: '55%',
+                endingShape: 'rounded'
               },
-              
-              xaxis: {
-                type: 'datetime',
-                categories: categories,
-
-              },
-              legend: {
-                position: 'right',
-                offsetY: 40
-              },
-              yaxis: {
-                axisBorder: {
-                  show: false
-                },
-                axisTicks: {
-                  show: false,
-                },
-                labels: {
-                  show: false,
-                }
-              
-              },
+            },
+            dataLabels: {
+              enabled: false
+            },
+            stroke: {
+              show: true,
+              width: 2,
+              colors: ['transparent']
+            },
+            xaxis: {
+              categories: categories,
+            },
+            yaxis: {
               title: {
-                text: '',
-                floating: true,
-                offsetY: 330,
-                align: 'center',
-                style: {
-                  color: '#444'
-                }
+                text: '$ (thousands)'
               }
             },
-          
-          
-          };
+            fill: {
+              opacity: 1
+            },
+            tooltip: {
+              y: {
+                formatter: function (val) {
+                  return "$ " + val + " thousands"
+                }
+              }
+            }
+          },
+        
+        
+        };
     }
 
     render() {
         this.sortData()
         this.configState()
-
       return (
         <div>
           <div id="chart">

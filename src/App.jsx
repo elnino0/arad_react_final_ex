@@ -1,14 +1,17 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom'
 import Home from './Pages/HomePage'
 import Login from './Pages/LoginPage'
 import { useState } from 'react'
 import AdminPage from './Pages/AdminPage'
 import UserPage from './Pages/UserPage'
 import Signup from './Pages/SignupPage'
+import Logout from './Componets/Logout'
+import Client from './apiClient/ApiClient'
 
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false)
+  const client = Client.getInstance()
+  const [loggedIn, setLoggedIn] = useState(client.isLogin())
   const [email, setEmail] = useState('')
 
   return (

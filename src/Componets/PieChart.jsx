@@ -5,11 +5,7 @@ import {
     Typography,
   } from "@material-tailwind/react";
   import Chart from "react-apexcharts";
-   
-  // If you're using Next.js please use the dynamic import for react-apexcharts and remove the import from the top for the react-apexcharts
-  // import dynamic from "next/dynamic";
-  // const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
-    
+       
   const hexCharacters = [0,1,2,3,4,5,6,7,8,9,"A","B","C","D","E","F"]
 
 

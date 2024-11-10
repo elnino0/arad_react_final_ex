@@ -30,12 +30,14 @@ function UserShop({prodacts}){
         setActive(!active);
       }
 
-    return (<div>
+    return (<div className='flex gap-1 rounded-full'>
     
-    <input className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" type="button" onClick={openCloseCart} value={'show cart'} />
+    <div className='self-start'>
+    <input className="bg-blue-500 hover:bg-blue-700 text-white font-bold w-20 h-20 rounded-full" type="button" onClick={openCloseCart} value={'show cart'} />
+    </div>
 
-    <span className="inline-block align-middle border-black-300 w-100 h-100"> {active ? "close" :  generateCart()} </span>
-    <span className="inline-block align-middle border-black-300 w-100 h-100"><UserProdactView prodacts={prodacts.data} onAdd = {onAddItem}  onRemove ={onRemoveItem}  ></UserProdactView></span>
+    <div className=" self-center col-span-2 border-black-300"> {active ? "close" :  generateCart()} </div>
+    <div className=" self-end border-black-300"><UserProdactView prodacts={prodacts.data} onAdd = {onAddItem}  onRemove ={onRemoveItem}  ></UserProdactView></div>
     </div>)
 }
 

@@ -1,7 +1,6 @@
 
 
 function TableComp({ data, columns, render }){
-    console.log("Table")
 
     const headers = columns.map((column, index) => {
         return (

@@ -21,7 +21,7 @@ const Home = (props) => {
           onClick={onButtonClick}
           value={loggedIn ? 'Log out' : 'Log in'}
         />
-        {loggedIn ? <div>Your email address is {email}</div> : <div />}
+        {loggedIn ? <div>Your email address is {email}</div> : <div>Your email address is {email}</div>}
       </div>
       <p>
         Dont have an account ? <Link to="/signin"> Login </Link>

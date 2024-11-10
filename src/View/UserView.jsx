@@ -15,18 +15,21 @@ function UserView({user, prodacts, orders}){
         setValue(newValue); 
       }; 
 
-    return (<>
+    return (<div>
+        <div className="absolute top-0 right-11"> 
+                <Logout onLogout={()=>{setLoggedIn(false)}}/>
+        </div> 
     <TabContext value={value}> 
         <TabList  aria-label="basic tabs example" onChange={handleChange}>
             <Tab label="Account" value="1"/>
             <Tab label="Orders" value="2"/>
             <Tab label="Shop" value="3"/>
         </TabList >
-            <TabPanel value="1"><UserAccount user={user}/></TabPanel> 
+            <TabPanel value="1"><UserAccount user={user.OnSave}/></TabPanel> 
             <TabPanel value="2"><UserOrders  orders={orders}/></TabPanel> 
             <TabPanel value="3"> <UserShop  prodacts={prodacts}/> </TabPanel>
-            </TabContext> 
-            </>
+        </TabContext>
+        </div>
         )
     }
     

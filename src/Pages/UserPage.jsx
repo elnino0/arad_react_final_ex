@@ -13,7 +13,8 @@ const [orders,setOrders] = useState([])
 
 
 useEffect(()=>{
-    clinet.getProdacts().then(res =>{
+    clinet.getUserProdacts().then(res =>{
+
         setProdact(res)
     }).then(
         clinet.getOrders().then(res =>{
@@ -61,7 +62,7 @@ const getUserView = () =>{
 return (<>
         <div>
             {
-                loggedIn == true ? <div><h1> Logged in </h1> {onlogin()}  </div> : <div><h1> Not logged in</h1> {onlogin()}</div> 
+                loggedIn == true ? <div><h1> Logged in </h1> {onlogin()}  </div> : <div><h1> Not logged in</h1></div> 
             }
         </div>
 </>)

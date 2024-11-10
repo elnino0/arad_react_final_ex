@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import AdminView from "../Componets/AdminView"
 import Client from '../apiClient/ApiClient'
+import Logout from "../Componets/Logout"
 
 
 function AdminPage({loggedIn}){
@@ -115,7 +116,7 @@ const getAdminView = () =>{
 return (<>
         <div>
             {
-                loggedIn == true ? <div><h1> Logged in </h1> {onlogin()}  </div> : <div><h1> Not logged in</h1> {onlogin()}</div> 
+                loggedIn == true ? <div><h1> Logged in </h1> {onlogin()}  </div> : <div><h1> Not logged in</h1></div>
             }
         </div>
 </>)
