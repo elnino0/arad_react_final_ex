@@ -9,7 +9,45 @@ function Signup(){
     const [isLoading, setLoading] = useState(false);
     const [user,setUser] = useState({})
     const navigate = useNavigate()
+    const [emailError, setEmailError] = useState('')
+    const [passwordError, setPasswordError] = useState('')
+
+    const validateUserDetails = (user) => {
+      // Set initial error values to empty
+      setEmailError('')
+      setPasswordError('')
+    
+      // Check if the user has entered both fields correctly
+      if ('' === user.email) {
+        setEmailError('Please enter your email')
+        return false
+      }
+    
+      if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
+        setEmailError('Please enter a valid email')
+        return false
+      }
+    
+      if ('' === user.password) {
+        setPasswordError('Please enter a password')
+        return false
+      }
+    
+      if (user.password.length < 7) {
+        setPasswordError('The password must be 8 characters or longer')
+        return false
+      }
+
+      return true
+    }
+      
+
     const onsubmit  = () =>{
+        
+      if(!validateUserDetails(user)){
+          return
+        }
+
         setLoading(true)
     }
     
@@ -47,11 +85,14 @@ function Signup(){
                     <div>
                       <label htmlFor="name" className="tracking-tighter text-gray-500 md:text-lg dark:text-gray-400 pr-4 ">Name</label>
                       <input type="text" onChange={ e=> { setUser({...user, name: e.target.value }) } } id="name" placeholder="Enter your name" className="tracking-tighter text-gray-500 md:text-lg dark:text-gray-400 font-bold py-2 px-4 rounded-full"/>
+
                     </div>
                     <div>
                       <label htmlFor="email" className="tracking-tighter text-gray-500 md:text-lg dark:text-gray-400 pr-4 ">E-Mail</label>
                       <input type="text" onChange={ e=> { setUser({...user, email: e.target.value }) } } id="email" placeholder="Enter your mail"  className="tracking-tighter text-gray-500 md:text-lg dark:text-gray-400 font-bold py-2 px-4 rounded-full"/>
                     </div>
+                    <br />
+                    <label className="errorLabel">{emailError}</label>
                     <div>
                       <label htmlFor="password" className="tracking-tighter text-gray-500 md:text-lg dark:text-gray-400 pr-4 " >Password</label>
                       <input
@@ -60,6 +101,8 @@ function Signup(){
                         placeholder="Enter you password"
                         onChange={ e=> { setUser({...user, password: e.target.value }) } }
                       />
+                      <br />
+                      <label className="errorLabel">{passwordError}</label>
                     </div>
                     <button type="submit" onClick={onsubmit} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" >Submit</button>
                   </form>

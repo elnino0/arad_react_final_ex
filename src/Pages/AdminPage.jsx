@@ -60,9 +60,7 @@ useEffect(()=>{
 
 
 const onUpdateProdact = (e,data) => {
-    
-    console.log("onUpdateProdact data", data)
-    if(data.id){
+        if(data.id){
         clinet.updateProdacts(data)
     }else{
         clinet.saveProdacts(data)

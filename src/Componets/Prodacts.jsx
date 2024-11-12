@@ -6,8 +6,8 @@ function Prodacts({onUpdate ,onAdd}){
         return state.prodacts
     })    
 
-    return (<div className="border-solid border-4 border-black-300 w-3px">
-        <ul className="w-100">
+    return (<div className="border-solid border-4 border-black-300">
+        <ul className="">
             {
                 data.map((prod,index) =>{
                     return <li key={index}><ProdactItem prodact={prod} onUpdate={onUpdate} /> </li>

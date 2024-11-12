@@ -15,7 +15,7 @@ function UserProdactsView({prodacts, onAdd, onRemove}){
             return <div> <h3>No items found</h3> </div>
         }
 
-        return <div className=' border-solid border-4 border-black-300 bg-slate-200 size-full md:size-auto p-10 gap-10'> 
+        return <div className=' border-solid border-4 border-black-300 bg-slate-200 size-full md:size-auto p-10 gap-10 '> 
         <ul>
         {prodacts.map((prod,index) =>{
                     if(filter.cat && prod.cat.includes(filter.cat)  ){

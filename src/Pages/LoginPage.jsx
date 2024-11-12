@@ -35,13 +35,13 @@ const Login = ({setLoggedIn}) => {
       setPasswordError('The password must be 8 characters or longer')
       return
     }
+    
     const clinet = Client.getInstance()
     const userDetails = await clinet.login(email, password)
 
     if(userDetails.admin == true){
       console.log("user", userDetails)  
       setLoggedIn(true)
-        console.log("naving")
         navigate("/admin")
     }else{
       setLoggedIn(true)

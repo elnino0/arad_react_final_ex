@@ -1,6 +1,8 @@
 
+require('dotenv').config()
+
 import axios from 'axios';
-const URL = "http://localhost:3000"
+const URL =process.env.BACKEND_URI || "http://localhost:3000"
 
 class Client {
     constructor() {
@@ -17,6 +19,19 @@ class Client {
         this.client.defaults.headers["Access-Control-Allow-Origin"] = "*"
         localStorage.setItem("accessToken", loginRes.data.access_token);
         return {admin:loginRes.data.admin}
+    }
+
+    async refreshToken() {
+        const loginRes =  await this.client.get("/auth/token")
+        console.log("token",  loginRes.data.access_token)
+        this.client.defaults.headers["authorization"] = "Bearer " + loginRes.data.access_token;
+        this.client.defaults.headers["Access-Control-Allow-Origin"] = "*"
+        localStorage.setItem("accessToken", loginRes.data.access_token);
+        return {admin:loginRes.data.admin}
+    }
+
+    async getProfile(){
+        return (await this.client.get("/auth/profile")).data
     }
 
     async getCategoreis(){
@@ -70,8 +85,16 @@ class Client {
         return (await this.client.get(`/prodacts/user`)).data
     }
     
+    async updateUser(user){
+        console.log("updateUser ", user)
+        const response =[]
+        response.push(await this.client.patch(`/user`, user).data ) 
+        response.push(await this.client.patch(`/customer`, {email:user.email}).data)  
+        return  response 
+    }
+
     async hideUserPhurches(ishide){
-        return (await this.client.patch(`/customer/hideOrders`), data={ishide}).data 
+        return this.client.patch(`/customer/hideOrders`, {ishide}).data 
     }
 
     async signUpUser(user){

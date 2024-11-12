@@ -2,12 +2,13 @@ import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import UserView from "../View/UserView"
 import Client from '../apiClient/ApiClient'
+import { useNavigate } from "react-router-dom"
 
 
 function UserPage({loggedIn,userDetails}){
 const clinet = Client.getInstance()
 const dispatch = useDispatch()
-
+const nav = useNavigate()
 const [prodacts,setProdact] = useState([])
 const [orders,setOrders] = useState([])
 
@@ -38,18 +39,24 @@ const OnOrderProdacts = (e,data) => {
         toOrders.push({quntety:datum.count, name:datum.name, prodactId:datum.id,price: datum.price,date:(new Date()).toISOString() })
     }
 
-    console.log("OnOrderProdacts" , toOrders)
     dispatch({ type: "CLEARCART"})
     clinet.saveOrders(toOrders)
     dispatch({ type: "ADDTOORDERS", payload: toOrders})
 }
 
 const onSaveUserDetails = (userDetails) =>{
-    clinet.updateUser(userDetails)
-    clinet.hideUserPhurches(userDetails.isShow)
+    console.log("userDetails ",userDetails)
+
+    clinet.hideUserPhurches(!userDetails.isShow).then(res =>{
+        clinet.updateUser(userDetails).then(res =>{
+            if(userDetails.email || userDetails.password){
+                clinet.logout()
+                nav("/login")
+            }
+        })
+    })
+
 }
-
-
 
 const onlogin = ()=> {
     return getUserView()
