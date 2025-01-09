@@ -1,8 +1,7 @@
-
-require('dotenv').config()
-
 import axios from 'axios';
-const URL =process.env.BACKEND_URI || "http://localhost:3000"
+
+console.log("BACKEND_URI", import.meta.env.VITE_BACKEND_URI)
+const URL = import.meta.env.VITE_BACKEND_URI || "http://localhost:3000";
 
 class Client {
     constructor() {

@@ -13,17 +13,15 @@ function Signup(){
     const [passwordError, setPasswordError] = useState('')
 
     const validateUserDetails = (user) => {
-      // Set initial error values to empty
-      setEmailError('')
-      setPasswordError('')
+  
     
       // Check if the user has entered both fields correctly
       if ('' === user.email) {
         setEmailError('Please enter your email')
         return false
       }
-    
-      if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
+      
+      if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(user.email)) {
         setEmailError('Please enter a valid email')
         return false
       }
@@ -43,11 +41,13 @@ function Signup(){
       
 
     const onsubmit  = () =>{
-        
+              console.log(user)
+
       if(!validateUserDetails(user)){
+          console.log("error")
           return
         }
-
+        console.log(user)
         setLoading(true)
     }
     
@@ -59,9 +59,11 @@ function Signup(){
     };
 
     useEffect(() => {
+      console.log("useEffect")
         if(isLoading == false){
           return
         }
+
         client.signUpUser(user).then(res =>{
             navigate("/login")
          }).catch(() =>{
@@ -81,7 +83,7 @@ function Signup(){
             <div className="items-center">
                 <div>
                   <div className="tracking-tighter text-gray-500 md:text-lg dark:text-gray-400 self-center">CREATE AN ACCOUNT</div>
-                  <form>
+                  <div>
                     <div>
                       <label htmlFor="name" className="tracking-tighter text-gray-500 md:text-lg dark:text-gray-400 pr-4 ">Name</label>
                       <input type="text" onChange={ e=> { setUser({...user, name: e.target.value }) } } id="name" placeholder="Enter your name" className="tracking-tighter text-gray-500 md:text-lg dark:text-gray-400 font-bold py-2 px-4 rounded-full"/>
@@ -105,7 +107,7 @@ function Signup(){
                       <label className="errorLabel">{passwordError}</label>
                     </div>
                     <button type="submit" onClick={onsubmit} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" >Submit</button>
-                  </form>
+                  </div>
                   <p className="text-blue-500 md:text-lg dark:text-gray-400 font-bold">
                     Have an account ? <Link to="/login"> Login </Link>
                   </p>
