@@ -1,11 +1,18 @@
-# React + Vite
+# React + Vite + nestjs + Postgres
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+hi
+this poject is e-commeres website 
+implamnet nest.js,typeorm with postgres as a backend and react vite for frontend
+featuring  Advanced search, product filtering, shopping cart.
+Admin panel (Back Office): Enables business owners to manage products, orders, customers, and inventory. Includes features for adding, editing, and deleting products, viewing sales statistics, and managing customers
 
-Currently, two official plugins are available:
+for start use 
+docker compose build
+docker compose up -d
+and go to http://localhost:5173
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+admin user : admin@email.com
+password: secretpass
 
-this is a front of https://github.com/elnino0/arad_final_backend  go to this repo and follow the instructions 
-then install with npm i set the BACKEND_URI then use npm run dev
+customer user: user@mail.com
+password: justauser
